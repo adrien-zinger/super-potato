@@ -2,10 +2,14 @@
 
 import {run} from './promiseAndGenerator/run.js'
 
+async function wait(x) {
+    console.log(x)
+    return new Promise(r => setTimeout(r(x), 200))
+}
 function *prGenerator() {
-    let a = yield new Promise(r => setTimeout(r('a'), 200))
-    let b = yield new Promise(r => setTimeout(r('b'), 200))
-    let c = yield new Promise(r => setTimeout(r('c'), 200))
+    let a = yield wait('a')
+    let b = yield wait('b')
+    let c = yield wait('c')
     return a + b + c
 }
 
