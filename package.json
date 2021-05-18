@@ -15,7 +15,8 @@
   "scripts": {
     "test": "jest",
     "compile": "babel src --out-dir .compiled --source-maps --presets=@babel/env",
-    "index": "npx babel-node ./src/index.js"
+    "index": "npx babel-node ./src/index.js",
+    "weaks": "npx babel-node ./src/theWeaks/weaks.js"
   },
   "author": "",
   "license": "ISC"
