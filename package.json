@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/test.js",
-  "dependencies": {},
+  "dependencies": {
+    "xlsx": "^0.17.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.14.0",
@@ -16,7 +18,8 @@
     "test": "jest",
     "compile": "babel src --out-dir .compiled --source-maps --presets=@babel/env",
     "index": "npx babel-node ./src/index.js",
-    "weaks": "npx babel-node ./src/theWeaks/weaks.js"
+    "weaks": "npx babel-node ./src/theWeaks/weaks.js",
+    "xlsx": "npx babel-node ./src/parse-xlsx/parser.js"
   },
   "author": "",
   "license": "ISC"
