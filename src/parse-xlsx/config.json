@@ -1,0 +1,10 @@
+{
+  "sheetpages": [],
+  "ignorepages": [],
+  "limits": {
+    "default": ["A", "Z", 0, 24],
+    "sheetpage": {
+      "Welcom": ["A", "Z", 0, 24]
+    }
+  }
+}

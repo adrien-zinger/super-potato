@@ -5,6 +5,7 @@
   "description": "",
   "main": "src/test.js",
   "dependencies": {
+    "prettier": "^2.3.1",
     "xlsx": "^0.17.0"
   },
   "devDependencies": {
@@ -12,6 +13,7 @@
     "@babel/core": "^7.14.0",
     "@babel/node": "^7.13.13",
     "@babel/preset-env": "^7.14.1",
+    "eslint": "^7.28.0",
     "jest": "^26.6.3"
   },
   "scripts": {
@@ -19,7 +21,8 @@
     "compile": "babel src --out-dir .compiled --source-maps --presets=@babel/env",
     "index": "npx babel-node ./src/index.js",
     "weaks": "npx babel-node ./src/theWeaks/weaks.js",
-    "xlsx": "npx babel-node ./src/parse-xlsx/parser.js > out.md"
+    "xlsx": "npx babel-node ./src/parse-xlsx/parser.js > out.md",
+    "prettify": "prettier --write '{,!(node_modules)/**/}*.js'"
   },
   "author": "",
   "license": "ISC"
