@@ -19,7 +19,7 @@
     "compile": "babel src --out-dir .compiled --source-maps --presets=@babel/env",
     "index": "npx babel-node ./src/index.js",
     "weaks": "npx babel-node ./src/theWeaks/weaks.js",
-    "xlsx": "npx babel-node ./src/parse-xlsx/parser.js"
+    "xlsx": "npx babel-node ./src/parse-xlsx/parser.js > out.md"
   },
   "author": "",
   "license": "ISC"
