@@ -5,11 +5,11 @@ if (Promise.map === undefined) {
     return Promise.all(
       promises.map((pr) => {
         return new Promise((resolve) => {
-          return cb(pr, resolve);
-        });
+          return cb(pr, resolve)
+        })
       })
-    );
-  };
+    )
+  }
 }
 
 // Just side effect is require

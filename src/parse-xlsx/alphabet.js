@@ -24,21 +24,21 @@ const alphabet = [
   "X",
   "Y",
   "Z",
-];
+]
 
 function* gen(start) {
-  let index = alphabet.indexOf(start);
-  const alen = alphabet.length;
+  let index = alphabet.indexOf(start)
+  const alen = alphabet.length
   while (true) {
     if (index >= alen) {
-      yield alphabet[Math.floor(index / alen) - 1] + alphabet[index % alen];
-    } else yield alphabet[index];
-    index++;
+      yield alphabet[Math.floor(index / alen) - 1] + alphabet[index % alen]
+    } else yield alphabet[index]
+    index++
   }
 }
 
 function getAlphabetSerie(start = "A") {
-  return gen(start);
+  return gen(start)
 }
 
-export { getAlphabetSerie, alphabet };
+export { getAlphabetSerie, alphabet }
