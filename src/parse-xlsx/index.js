@@ -1,10 +1,7 @@
 import XLSX from "xlsx"
-import path from "path"
-import { fileURLToPath } from "url"
 import { getAlphabetSerie } from "./alphabet.js"
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-import config from "./config.js"
+
+import default_config from "./config.js"
 
 /**
  *
@@ -28,7 +25,7 @@ function graps(worksheet, [letter_start, letter_end, num_start, num_end], map) {
   }
 }
 
-function prettyPrint(table, cb) {
+function xlsxMdPrint(table, cb) {
   function replaceLineJump(str) {
     return str
       .split("")
@@ -84,20 +81,34 @@ function removeEmpties(table) {
   return table
 }
 
-function parse() {
-  const workbook = XLSX.readFile(`${__dirname}/input.xlsx`)
-  console.log(`# Parsing \n`)
-  const { sheetignore, limits } = config
-  for (const name of workbook.SheetNames) {
-    if (sheetignore.length > 0 && sheetignore.indexOf(name) >= 0) continue
-    console.log(`## Grapping sheet ${name}\n`)
-    var worksheet = workbook.Sheets[name]
-    const lims = limits[name] !== undefined ? limits[name] : limits["default"]
-    const table = graps(worksheet, lims, (cell) => {
-      return cell === undefined ? "" : cell.v
-    })
-    prettyPrint(removeEmpties(table), console.log)
-  }
+/**
+ * 
+ * @param {*} config 
+ * @returns {Promise}
+ */
+function xlsxParser(path, config = undefined) {
+  if (config === undefined) config = default_config
+  return new Promise((res) => {
+    let ret = []
+    const workbook = XLSX.readFile(path)
+    const { sheetignore, limits } = config
+    for (const name of workbook.SheetNames) {
+      if (sheetignore.length > 0 && sheetignore.indexOf(name) >= 0) continue
+      var worksheet = workbook.Sheets[name]
+      const lims = limits[name] !== undefined ? limits[name] : limits["default"]
+      const table = graps(worksheet, lims, (cell) => {
+        return cell === undefined ? "" : cell.v
+      })
+      ret.push({
+        sheetpage: name,
+        data: removeEmpties(table),
+      })
+    }
+    res(ret)
+  })
 }
 
-parse()
+export {
+  xlsxParser,
+  xlsxMdPrint,
+}
